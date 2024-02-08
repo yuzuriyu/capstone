@@ -54,7 +54,7 @@ const VoltageContextProvider = ({ children }) => {
 
     fetchVoltageData();
 
-    const interval = setInterval(fetchVoltageData, 10000);
+    const interval = setInterval(fetchVoltageData, 5000);
 
     return () => clearInterval(interval);
   }, []);
