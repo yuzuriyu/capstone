@@ -4,7 +4,6 @@ import HeroChart from "../components/HeroChart";
 import Subheader from "../components/Subheader";
 import Devices from "../components/Devices";
 import Sidebar from "../components/Sidebar";
-import PieChartComponent from "../components/PieChart";
 
 const HomePage = () => {
   return (

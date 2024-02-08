@@ -41,7 +41,7 @@ const Devices = () => {
   ];
 
   return (
-    <div className="w-11/12 m-auto">
+    <div className="w-full m-auto md:m-0 lg:w-1/2">
       <h1>Device</h1>
       <ResponsiveContainer width="100%" height={400}>
         <BarChart
