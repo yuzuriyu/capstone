@@ -18,7 +18,6 @@ const HomePage = () => {
         <HeroChart />
         <div className="flex w-11/12 m-auto flex-col md:flex-row">
           <Devices />
-          <PieChartComponent />
         </div>
       </div>
     </div>
