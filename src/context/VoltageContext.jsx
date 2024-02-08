@@ -5,13 +5,13 @@ const VoltageContext = createContext();
 const VoltageContextProvider = ({ children }) => {
   const [latestRecord, setLatestRecord] = useState(0);
   const [voltageData, setVoltageData] = useState([
-    { day: "Monday", voltages: [12] },
-    { day: "Tuesday", voltages: [45] },
-    { day: "Wednesday", voltages: [22] },
-    { day: "Thursday", voltages: [39] },
-    { day: "Friday", voltages: [55] },
-    { day: "Saturday", voltages: [16] },
-    { day: "Sunday", voltages: [18] },
+    { day: "Mon", voltages: [12] },
+    { day: "Tue", voltages: [45] },
+    { day: "Wed", voltages: [22] },
+    { day: "Thu", voltages: [39] },
+    { day: "Fri", voltages: [55] },
+    { day: "Sat", voltages: [16] },
+    { day: "Sun", voltages: [18] },
   ]);
 
   const [totalVoltages, setTotalVoltages] = useState({
@@ -27,7 +27,9 @@ const VoltageContextProvider = ({ children }) => {
   useEffect(() => {
     const fetchVoltageData = async () => {
       try {
-        const res = await fetch("http://localhost:7000/voltage");
+        const res = await fetch(
+          "https://capstone-server-alpha.vercel.app/api/hello"
+        );
         const data = await res.json();
 
         const currentDate = new Date();
@@ -74,7 +76,7 @@ const VoltageContextProvider = ({ children }) => {
     (acc, voltage) => acc + voltage,
     0
   );
-  console.log(latestRecord);
+  console.log(voltageData);
   return (
     <VoltageContext.Provider
       value={{

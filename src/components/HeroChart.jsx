@@ -30,7 +30,7 @@ const HeroChart = () => {
   }
 
   return (
-    <div className="w-11/12 m-auto">
+    <div className="w-11/12 m-auto py-10">
       <div className="border-b border-darkblue mb-4">
         <h1 className="">Total Energy Accumulated</h1>
         <p className="my-2 text-xl">{totalAccumulation} V</p>
@@ -57,10 +57,10 @@ const HeroChart = () => {
           margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
         >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="day" />
-          <YAxis />
-          <Tooltip />
-          <Legend />
+          <XAxis dataKey="day" fontSize={12} /> {/* Adjust font size here */}
+          <YAxis fontSize={12} /> {/* Adjust font size here */}
+          <Tooltip fontSize={12} /> {/* Adjust font size here */}
+          <Legend fontSize={12} /> {/* Adjust font size here */}
           <Line
             type="monotone"
             dataKey="voltage"

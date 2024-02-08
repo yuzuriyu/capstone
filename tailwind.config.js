@@ -36,6 +36,8 @@ export default {
         darkblue: "#262b40",
         activeblue: "#61dafb",
         lineblue: "#17a5ce",
+        pageblue: "#2e3650",
+        borderblue: "#424c71",
       },
     },
   },
