@@ -43,7 +43,9 @@ const HeroChart = () => {
                 font-bold
               `}
           >
-            <span>{yesterdayAccumulation >= 1000 ? " ⭦" : " ⭩"}</span>
+            <span className="text-lg">
+              {yesterdayAccumulation >= 1000 ? " " : " -"}
+            </span>
             {yesterdayAccumulation}%
           </span>
         </p>
