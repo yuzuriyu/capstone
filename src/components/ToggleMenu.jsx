@@ -1,4 +1,3 @@
-import React from "react";
 import React, { useContext } from "react";
 import logo from "../assets/react.svg";
 import overviewLight from "../assets/overview--light.png";
@@ -10,7 +9,83 @@ import howLight from "../assets/how--light.png";
 import detailsLight from "../assets/details--light.png";
 
 const ToggleMenu = () => {
-  return <div></div>;
+  const { handleActivePage, activePage } = useContext(PageContext);
+
+  return (
+    <div className="bg-darkblue h-full w-2/3 absolute top-0 z-50">
+      <div className="w-10/12 m-auto py-4">
+        <div className="flex items-center mb-4">
+          <img src={logo} alt="" className="mr-4" />
+          <p className="text-white">Volt React</p>
+        </div>
+        <div
+          className={`flex items-center py-4 rounded-lg px-4 mb-2   ${
+            activePage === "Overview"
+              ? "bg-pageblue border-borderblue border"
+              : ""
+          }`}
+          onClick={() => handleActivePage("Overview")}
+        >
+          <img src={overviewLight} alt="" className="mr-4 w-7" />
+          <p className="text-white">Overview</p>
+        </div>
+        <div
+          className={`flex items-center py-4 rounded-lg px-4 ${
+            activePage === "About" ? "bg-pageblue border-borderblue border" : ""
+          }`}
+          onClick={() => handleActivePage("About")}
+        >
+          <img src={aboutLight} alt="" className="mr-4 w-7" />
+          <p className="text-white">About Us</p>
+        </div>
+        <div
+          className={`flex items-center py-4 rounded-lg px-4 ${
+            activePage === "Contact"
+              ? "bg-pageblue border-borderblue border"
+              : ""
+          }`}
+          onClick={() => handleActivePage("Contact")}
+        >
+          <img src={contactLight} alt="" className="mr-4 w-7" />
+          <p className="text-white">Contact</p>
+        </div>
+        <div
+          className={`flex items-center py-4 rounded-lg px-4 ${
+            activePage === "Details"
+              ? "bg-pageblue border-borderblue border"
+              : ""
+          }`}
+          onClick={() => handleActivePage("Details")}
+        >
+          <img src={detailsLight} alt="" className="mr-4 w-7" />
+          <p className="text-white">Project Details</p>
+        </div>
+
+        <div
+          className={`flex items-center py-4 rounded-lg px-4 ${
+            activePage === "How it Works"
+              ? "bg-pageblue border-borderblue border"
+              : ""
+          }`}
+          onClick={() => handleActivePage("How it Works")}
+        >
+          <img src={howLight} alt="" className="mr-4 w-7" />
+          <p className="text-white">How it Works</p>
+        </div>
+        <div
+          className={`flex items-center py-4 rounded-lg px-4 ${
+            activePage === "Gallery"
+              ? "bg-pageblue border-borderblue border"
+              : ""
+          }`}
+          onClick={() => handleActivePage("Gallery")}
+        >
+          <img src={galleryLight} alt="" className="mr-4 w-7" />
+          <p className="text-white">Gallery</p>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default ToggleMenu;
