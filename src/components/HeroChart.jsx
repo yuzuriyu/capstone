@@ -30,7 +30,7 @@ const HeroChart = () => {
   }
 
   return (
-    <div className="w-11/12 m-auto py-10">
+    <div className="w-11/12 m-auto py-10 md:w-10/12">
       <div className="border-b border-darkblue mb-4">
         <h1 className="">Total Energy Accumulated</h1>
         <p className="my-2 text-xl">{totalAccumulation} V</p>

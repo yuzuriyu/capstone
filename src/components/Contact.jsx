@@ -9,14 +9,12 @@ const Contact = () => {
     <>
       <div className="relative h-[316px]">
         <img
-          src={
-            "https://r4.wallpaperflare.com/wallpaper/666/572/996/virtual-youtuber-hololive-kazama-iroha-bamboo-hd-wallpaper-e215e33cf8ea55665ea7dfaaadabcba3.jpg"
-          }
+          src={"https://wallpaperset.com/w/full/c/0/7/278220.jpg"}
           alt=""
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover object-bottom"
         />
         <div className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 flex flex-col justify-center">
-          <h1 className="text-5xl font-playfair">Contact</h1>
+          <h1 className="text-5xl font-playfair text-white">Contact</h1>
         </div>
       </div>
       <div className="w-11/12 m-auto py-10">

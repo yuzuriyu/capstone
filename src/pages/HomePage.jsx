@@ -15,7 +15,7 @@ const HomePage = () => {
         <Header />
         <Subheader />
         <HeroChart />
-        <div className="flex w-11/12 m-auto flex-col md:flex-row">
+        <div className="flex w-11/12 m-auto flex-col md:flex-row md:w-10/12">
           <Devices />
         </div>
       </div>

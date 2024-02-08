@@ -5,12 +5,11 @@ export default function About() {
     <>
       <div className="relative h-[316px] w-full">
         <img
-          src="https://r4.wallpaperflare.com/wallpaper/666/572/996/virtual-youtuber-hololive-kazama-iroha-bamboo-hd-wallpaper-e215e33cf8ea55665ea7dfaaadabcba3.jpg"
-          alt=""
+          src="https://coolwallpapers.me/picsup/5043436-building-city-japan-light-night-time-lapse-tokyo.jpg"
           className="w-full h-full object-cover"
         />
         <div className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 flex flex-col justify-center items-center">
-          <h1 className="text-5xl font-playfair">About Us</h1>
+          <h1 className="text-5xl font-playfair text-white">About Us</h1>
         </div>
       </div>
       <div className="w-11/12 m-auto py-20 md:w-10/12">

@@ -11,7 +11,7 @@ const Subheader = () => {
   };
   return (
     <div className="relative">
-      <div className="w-11/12 m-auto flex justify-between items-center my-4">
+      <div className="w-11/12 m-auto flex justify-between items-center my-4 md:w-10/12">
         <div className="flex items-center border rounded-lg px-4 py-2 w-[240px] overflow-hidden">
           <img src={search} alt="" className="w-4" />
           <input
