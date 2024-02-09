@@ -23,9 +23,8 @@ const Contact = () => {
             Get In Touch With Us
           </h1>
           <p className="text-sm text-gray-500 text-center ">
-            For More Information About Our Product & Services. Please Feel Free
-            To Drop Us An Email. Our Staff Always Be There To Help You Out. Do
-            Not Hesitate!
+            For More Information About Our Project. Please Feel Free To Drop Us
+            An Email. Our Team Will Be There To Help You Out. Do Not Hesitate!
           </p>
         </div>
         <div className="flex flex-col md:flex-row py-20 md:w-10/12 m-auto gap-20">

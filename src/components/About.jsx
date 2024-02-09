@@ -19,39 +19,44 @@ export default function About() {
               Project Overview
             </h1>
             <p className="">
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos quo
-              ab expedita praesentium accusantium voluptates fugiat aliquam
-              eveniet dolores. Quaerat adipisci fugit sequi nesciunt quam
-              suscipit, est eos ducimus sapiente?
+              This is a capstone project about Footstep Power Generator with
+              Arduino which captures energy from footfalls to generate
+              electricity. Using sensors and an Arduino microcontroller, it
+              converts mechanical energy into electrical energy efficiently. The
+              project showcases the feasibility of harvesting renewable energy
+              from human movement, promoting sustainability and energy
+              efficiency.
             </p>
           </div>
           <div>
             <h1 className="text-xl border-b font-bold mb-4 ">Team Members</h1>
-            <p className="">
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quidem
-              quasi aspernatur accusamus doloribus voluptatibus reiciendis unde
-              laudantium? Ratione aliquam doloribus soluta qui animi. Ipsum hic
-              officia eos corporis est. Eos?
-            </p>
+            <ul>
+              <li>Jhun Tibayan</li>
+              <li>Carey Cole S. Garcia</li>
+              <li>Cedrick Abitria Guiriba</li>
+              <li>Erika Mae Petero</li>
+            </ul>
           </div>
           <div>
             <h1 className="text-xl font-bold mb-4 border-b ">
               Technology and Innovation
             </h1>
             <p className="">
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maxime
-              libero ad dolore earum laborum necessitatibus delectus
-              perspiciatis molestias illum quibusdam laboriosam quo provident
-              autem labore, doloremque similique sequi, numquam reiciendis.
+              Technology and innovation drive progress across industries,
+              reshaping the way we live and work. From renewable energy
+              solutions to cutting-edge advancements, they redefine efficiency
+              and sustainability. Through ingenuity, we unlock new opportunities
+              and address complex challenges, shaping a brighter future.
             </p>
           </div>
           <div>
             <h1 className="text-xl font-bold mb-4 border-b ">Future Plans</h1>
             <p className="">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil,
-              nisi qui corporis porro animi mollitia illum minus odit nulla
-              ipsum officiis asperiores natus beatae ut quasi, molestias quas
-              voluptate. Cupiditate!
+              In the future, our team intends to further develop our skills in
+              project management, problem-solving, and collaboration as we
+              progress throughout our career. We aim to enhance our
+              understanding of sustainable energy solutions and Arduino
+              technology through practical implementation and experimentation.
             </p>
           </div>
           <div>
@@ -59,15 +64,16 @@ export default function About() {
               Impact and Benefits
             </h1>
             <p className="">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad ipsam
-              quo atque nulla veritatis tempore libero unde asperiores ea
-              ratione, eveniet voluptate animi corporis ex esse enim explicabo
-              perspiciatis nostrum?
+              Our project offers sustainable energy solutions by harnessing
+              human kinetic energy. It promotes environmental conservation,
+              reduces reliance on traditional power sources, and demonstrates
+              the potential of renewable energy integration in high-traffic
+              areas.
             </p>
           </div>
           <p className="">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Mollitia
-            accusamus suscipit, voluptatem tempore veniam nihil,
+            All rights reserved © 2024. Unauthorized use or reproduction of
+            content is prohibited without prior consent.
           </p>
         </div>
       </div>
