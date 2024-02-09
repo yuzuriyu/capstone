@@ -1,10 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
 import locationDark from "../assets/location--dark.png";
 
 import phoneDark from "../assets/phone--dark.png";
 import timeDark from "../assets/time--dark.png";
 
 const Contact = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+
+  const submitForm = async () => {
+    try {
+      await fetch("", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+        }),
+      });
+
+      alert("submission complete");
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    }
+  };
   return (
     <>
       <div className="relative h-[316px]">
@@ -68,26 +95,41 @@ const Contact = () => {
               type="text"
               placeholder="Abc"
               className="border rounded-lg px-4 py-4 mb-4 flex-1 placeholder:text-sm"
+              onChange={(e) =>
+                setFormData({ ...formData, name: e.target.value })
+              }
             />
             <p className="text-sm mb-2 ">Email address</p>
             <input
               type="text"
               placeholder="Abc@gmail.com"
               className="border rounded-lg px-4 py-4 mb-4 flex-1 placeholder:text-sm"
+              onChange={(e) =>
+                setFormData({ ...formData, email: e.target.value })
+              }
             />
             <p className="text-sm mb-2 ">Subject</p>
             <input
               type="text"
               placeholder="This is optional"
               className="border rounded-lg px-4 py-4 mb-4 flex-1 placeholder:text-sm"
+              onChange={(e) =>
+                setFormData({ ...formData, subject: e.target.value })
+              }
             />
             <p className="text-sm mb-2 ">Message</p>
             <textarea
               type="text"
               placeholder="Hi! I'd like to ask about"
               className="border rounded-lg px-4 py-4 mb-4 flex-1 placeholder:text-sm"
+              onChange={(e) =>
+                setFormData({ ...formData, message: e.target.value })
+              }
             />
-            <button className="bg-orange-400 text-white px-7 py-3 mt-4 rounded-lg w-[200px]">
+            <button
+              className="bg-orange-400 text-white px-7 py-3 mt-4 rounded-lg w-[200px]"
+              onClick={submitForm}
+            >
               Submit
             </button>
           </div>

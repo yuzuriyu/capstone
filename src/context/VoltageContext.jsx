@@ -76,7 +76,6 @@ const VoltageContextProvider = ({ children }) => {
     (acc, voltage) => acc + voltage,
     0
   );
-  console.log(voltageData);
   return (
     <VoltageContext.Provider
       value={{
