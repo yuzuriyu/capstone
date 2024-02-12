@@ -1,8 +1,11 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
 import lock from "../assets/lock.png";
-import logo from "../assets/react.svg";
 import user from "../assets/user.png";
+import google from "../assets/google.png";
+import logo from "../assets/react.svg";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { auth, googleProvider } from "../config/firebase";
+import { signInWithPopup, createUserWithEmailAndPassword } from "firebase/auth";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -12,58 +15,45 @@ const Register = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState(null);
 
-  const handleRegister = async () => {
-    if (!email || !password || !confirmPassword) {
-      setError("Please fill in all fields");
-      return;
-    }
+  console.log(auth?.currentUser?.email);
 
-    if (password !== confirmPassword) {
-      setError("Passwords do not match");
-      return;
-    }
-
-    try {
-      const response = await fetch("http://localhost:4000/createUser", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
-      });
-
-      if (response.ok) {
-        navigate("/login");
-      } else {
-        const data = await response.json();
-        if (data && data.message) {
-          setError(data.message);
-        } else {
-          setError("Registration failed: Unexpected response from the server");
-        }
+  const signUp = async () => {
+    if (password === confirmPassword) {
+      try {
+        await createUserWithEmailAndPassword(auth, email, password);
+        navigate("/");
+      } catch (err) {
+        setError("Invalid email or password");
+        console.log(err);
       }
-    } catch (error) {
-      console.error("Registration error:", error);
-      setError("Registration failed: Unexpected error occurred");
+    } else {
+      setError("Invalid email or password");
     }
   };
 
+  const signInWithGoogle = async () => {
+    try {
+      await signInWithPopup(auth, googleProvider);
+      navigate("/");
+    } catch (err) {
+      console.log(err);
+      setError("Google sign-in failed");
+    }
+  };
   return (
     <div className="w-[366px] absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2">
-      <div>
-        <img
-          src={logo}
-          alt="React Logo"
-          className="w-[150px] my-8 m-auto animate-spin-slow"
-        />
-      </div>
+      <img
+        src={logo}
+        alt="logo"
+        className="w-[150px] m-auto my-8 animate-spin-slow"
+      />
       <div className="flex flex-col">
         <div
           className={`flex items-center mb-4 border-b py-2 ${
             error ? "border-red-400" : ""
           }`}
         >
-          <img src={user} alt="User Icon" className="mx-2 w-5" />
+          <img src={user} alt="user icon" className="mx-2 w-5" />
           <input
             type="text"
             placeholder="Email"
@@ -73,11 +63,11 @@ const Register = () => {
           />
         </div>
         <div
-          className={`flex items-center mb-4 border-b py-2 relative ${
+          className={`flex items-center mb-4 border-b py-2 r ${
             error ? "border-red-400" : ""
           }`}
         >
-          <img src={lock} alt="Password Icon" className="mx-2 w-5" />
+          <img src={lock} alt="password icon" className="mx-2 w-5" />
           <input
             type="password"
             placeholder="Password"
@@ -85,18 +75,13 @@ const Register = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          {error && (
-            <p className="text-red-400 text-xs text-right mb-4 absolute top-12 right-0">
-              {error}
-            </p>
-          )}
         </div>
         <div
           className={`flex items-center mb-4 border-b py-2 relative ${
             error ? "border-red-400" : ""
           }`}
         >
-          <img src={lock} alt="Password Icon" className="mx-2 w-5" />
+          <img src={lock} alt="password icon" className="mx-2 w-5" />
           <input
             type="password"
             placeholder="Confirm Password"
@@ -105,22 +90,30 @@ const Register = () => {
             onChange={(e) => setConfirmPassword(e.target.value)}
           />
           {error && (
-            <p className="text-red-400 text-xs text-right mb-4 absolute top-12 right-0">
+            <p className="text-red-400 text-xs text-right absolute top-12 right-0">
               {error}
             </p>
           )}
         </div>
-
         <button
-          className="bg-darkblue text-white flex-1 py-3 mt-10 rounded-lg text-xs hover:bg-pageblue mb-4"
-          onClick={handleRegister}
+          className="bg-darkblue text-white flex-1 py-3 rounded-lg text-xs hover:pageblue mb-4 mt-10"
+          onClick={() => signUp()}
         >
           Register
         </button>
+        <div
+          className="flex items-center justify-center mb-4 border border-darkblue rounded-lg py-3 cursor-pointer"
+          onClick={() => signInWithGoogle()}
+        >
+          <img src={google} alt="google icon" className="mr-2 w-4" />
+          <p className="text-xs">
+            Login with <span className="font-bold">Google</span>
+          </p>
+        </div>
         <p className="text-xs text-center">
-          Already have an account?
-          <Link to="/login">
-            <span className="text-blue-400"> Login</span>
+          Already have an account?{" "}
+          <Link to={"/login"}>
+            <span className="text-blue-400">Login</span>
           </Link>
         </p>
       </div>

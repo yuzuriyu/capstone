@@ -3,20 +3,19 @@ import { useNavigate, Link } from "react-router-dom";
 import settingsDark from "../assets/settings--dark.png";
 import logoutDark from "../assets/logout--dark.png";
 import profileDark from "../assets/profile--dark.png";
-import { AuthContext } from "../context/AuthContext";
-import { UserContext } from "../context/UserContext";
+import { auth } from "../config/firebase";
+import { signOut } from "firebase/auth";
 
 const DropDown = () => {
-  const { setIsAuthenticated } = useContext(AuthContext);
-  const { authenticatedEmail } = useContext(UserContext);
   const navigate = useNavigate();
 
-  const handleLogout = () => {
-    // Clear JWT token from local storage or cookies
-    localStorage.removeItem("token");
-    localStorage.removeItem(authenticatedEmail);
-    setIsAuthenticated(false);
-    navigate("/login");
+  const signOutUser = async () => {
+    try {
+      await signOut(auth);
+      navigate("/login");
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -29,7 +28,7 @@ const DropDown = () => {
         <img src={settingsDark} alt="" className="mr-4 w-5" />
         <p className="text-sm">Settings</p>
       </div>
-      <div className="flex items-center border-t pt-2" onClick={handleLogout}>
+      <div className="flex items-center border-t pt-2" onClick={signOutUser}>
         <img src={logoutDark} alt="" className="mr-4 w-5 cursor-pointer" />
         <p className="text-sm cursor-pointer">Logout</p>
       </div>

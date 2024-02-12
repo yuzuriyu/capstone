@@ -1,71 +1,60 @@
 import React, { useContext, useState } from "react";
-import { UserContext } from "../context/UserContext";
+import { auth } from "../config/firebase";
 
 const Profile = () => {
-  const { userData, setUserData, authenticatedEmail } = useContext(UserContext);
-  const [isUpdateProfileActive, setIsUpdateProfileActive] = useState(false);
-
   const handleUpdateProfiel = () => {
     setIsUpdateProfileActive((prevStatus) => !prevStatus);
   };
-  const submitData = async () => {
-    try {
-      const response = await fetch("http://localhost:4000/updateUserInfo", {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: userData.username,
-          email: userData.email,
-          role: userData.role,
-          profilePicture: userData.profilePicture,
-          phoneNumber: userData.phoneNumber,
-          bio: userData.bio,
-        }),
-      });
 
-      if (!response.ok) {
-        throw new Error("Failed to submit data. Please try again later.");
-      }
+  const [userData, setUserData] = useState({
+    username: "",
+    email: "",
+    role: "",
+    phoneNumber: "",
+    bio: "",
+    profilePicture: "",
+  });
 
-      alert("Submission complete");
-    } catch (error) {
-      console.error("Error submitting form:", error);
-      // Display a user-friendly error message
-      alert("Failed to submit data. Please try again later.");
-    }
+  const updateData = async () => {
+    await fetch(`http://localhost:4000/updateUser/${auth.currentUser.uid}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        username: userData.username,
+        email: userData.email,
+        role: userData.role,
+        bio: userData.bio,
+        profilePicture: userData.profilePicture,
+      }),
+    });
   };
 
-  console.log(userData);
   return (
     <>
       <div className="w-11/12 m-auto md:w-10/12 py-10 flex flex-col lg:flex-row gap-20 lg:gap-10">
         <div className="lg:w-1/2">
-          <div className="flex gap-4">
+          <div className="flex gap-4 border-b pb-4">
             <div>
               <img
-                src="https://i.pinimg.com/736x/cd/dc/d1/cddcd1c972ec421e0e45244a0ed65413.jpg"
+                src={auth.currentUser.photoURL}
                 alt=""
-                className="w-[150px] rounded-lg"
+                className="w-[100px] rounded-lg"
               />
             </div>
             <div>
-              <h1 className="text-xl font-bold">Cole</h1>
+              <h1 className="text-xl font-bold">
+                {auth.currentUser.displayName}
+              </h1>
               <p className="text-gray-500 mb-4">CEO of Kaiba Corporation</p>
-              <p className="text-sm text-gray-500 mb-2">{authenticatedEmail}</p>
-              <p className="text-sm text-gray-500">0906*** ****</p>
+              <p className="text-sm text-gray-500 mb-2">
+                {auth.currentUser.email}
+              </p>
             </div>
           </div>
-          <div className="mt-4">
-            <button
-              className="rounded-lg border px-2 py-1"
-              onClick={handleUpdateProfiel}
-            >
-              Edit Profile
-            </button>
-          </div>
-          <div className="border-b mt-8 md:w-1/2">
+
+          <div className="border-b mt-8">
             <div className="flex justify-between items-center mb-2">
               <p className="font-bold text-sm">BIO</p>
               <p className="text-blue-400 text-sm">Edit bio</p>
@@ -82,7 +71,7 @@ const Profile = () => {
             <p>Feb 11, 2024</p>
           </div>
         </div>
-        {isUpdateProfileActive && (
+        {
           <div className="lg:w-1/2">
             <div className="w-full flex flex-col">
               <h1 className="text-lg font-bold mb-4">Update Profile</h1>
@@ -125,13 +114,13 @@ const Profile = () => {
               <input type="file" className="py-2 px-4" />
               <button
                 className="bg-darkblue hover:bg-pageblue text-white px-7 py-3 mt-4 rounded-lg w-[200px]"
-                onClick={submitData}
+                onClick={updateData}
               >
                 Submit
               </button>
             </div>
           </div>
-        )}
+        }
       </div>
     </>
   );

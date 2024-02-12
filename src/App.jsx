@@ -10,63 +10,60 @@ import HowPage from "./pages/HowPage";
 import Gallery from "./pages/Gallery";
 import Login from "./components/Login";
 import Register from "./components/Register";
-import { AuthContextProvider } from "./context/AuthContext";
-import UserContextProvider from "./context/UserContext";
+
+import { auth } from "./config/firebase";
+
 import ProfilePage from "./pages/ProfilePage";
 
 const App = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-
-  const renderProtectedRoute = (element) =>
-    isAuthenticated ? element : <Login />;
+  const [user, setUser] = useState(auth.currentUser);
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      setIsAuthenticated(true);
-    }
+    const unsubscribe = auth.onAuthStateChanged((authUser) => {
+      setUser(authUser);
+    });
+
+    return () => unsubscribe();
   }, []);
 
+  const renderProtectedRoute = (element) => (user ? element : <Login />);
+
   return (
-    <AuthContextProvider setIsAuthenticated={setIsAuthenticated}>
-      <UserContextProvider>
-        <PageContextProvider>
-          <VoltageContextProvider>
-            <div className="font-poppins text-darkblue">
-              <Routes>
-                <Route path="/" element={renderProtectedRoute(<HomePage />)} />
-                <Route
-                  path="/about"
-                  element={renderProtectedRoute(<AboutPage />)}
-                />
-                <Route
-                  path="/contact"
-                  element={renderProtectedRoute(<ContactPage />)}
-                />
-                <Route
-                  path="/project-details"
-                  element={renderProtectedRoute(<DetailsPage />)}
-                />
-                <Route
-                  path="/how-it-works"
-                  element={renderProtectedRoute(<HowPage />)}
-                />
-                <Route
-                  path="/gallery"
-                  element={renderProtectedRoute(<Gallery />)}
-                />
-                <Route
-                  path="/profile"
-                  element={renderProtectedRoute(<ProfilePage />)}
-                />
-                <Route path="/login" element={<Login />} />
-                <Route path="/register" element={<Register />} />
-              </Routes>
-            </div>
-          </VoltageContextProvider>
-        </PageContextProvider>
-      </UserContextProvider>
-    </AuthContextProvider>
+    <PageContextProvider>
+      <VoltageContextProvider>
+        <div className="font-poppins text-darkblue">
+          <Routes>
+            <Route path="/" element={renderProtectedRoute(<HomePage />)} />
+            <Route
+              path="/about"
+              element={renderProtectedRoute(<AboutPage />)}
+            />
+            <Route
+              path="/contact"
+              element={renderProtectedRoute(<ContactPage />)}
+            />
+            <Route
+              path="/project-details"
+              element={renderProtectedRoute(<DetailsPage />)}
+            />
+            <Route
+              path="/how-it-works"
+              element={renderProtectedRoute(<HowPage />)}
+            />
+            <Route
+              path="/gallery"
+              element={renderProtectedRoute(<Gallery />)}
+            />
+            <Route
+              path="/profile"
+              element={renderProtectedRoute(<ProfilePage />)}
+            />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+          </Routes>
+        </div>
+      </VoltageContextProvider>
+    </PageContextProvider>
   );
 };
 

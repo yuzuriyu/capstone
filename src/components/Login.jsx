@@ -1,50 +1,40 @@
-import React, { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
 import lock from "../assets/lock.png";
-import logo from "../assets/react.svg";
 import user from "../assets/user.png";
-import { AuthContext } from "../context/AuthContext";
-import { UserContext } from "../context/UserContext";
+import google from "../assets/google.png";
+import logo from "../assets/react.svg";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { auth, googleProvider } from "../config/firebase";
+import { signInWithPopup, signInWithEmailAndPassword } from "firebase/auth";
 
 const Login = () => {
-  const { setIsAuthenticated } = useContext(AuthContext);
-  const { setAuthenticatedEmail } = useContext(UserContext);
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
 
-  const handleLogin = async () => {
+  console.log(auth?.currentUser?.email);
+
+  const signIn = async () => {
     try {
-      const response = await fetch("http://localhost:4000/signIn", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        console.log("Login successful. Received token:", data.token);
-        localStorage.setItem("token", data.token);
-        setIsAuthenticated(true);
-        localStorage.setItem("authenticatedEmail", email); // Store authenticatedEmail in localStorage
-
-        navigate("/");
-      } else {
-        const errorData = await response.json();
-        console.error("Login failed:", errorData.message);
-        setError("Invalid username or password");
-        setIsAuthenticated(false);
-      }
-    } catch (error) {
-      console.error("Login error:", error);
-      setError("An unexpected error occurred");
+      await signInWithEmailAndPassword(auth, email, password);
+      navigate("/");
+    } catch (err) {
+      console.log(err);
+      setError("Invalid email or password");
     }
   };
 
+  const signInWithGoogle = async () => {
+    try {
+      await signInWithPopup(auth, googleProvider);
+      navigate("/");
+    } catch (err) {
+      console.log(err);
+      setError("Google sign-in failed");
+    }
+  };
   return (
     <div className="w-[366px] absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2">
       <div>
@@ -90,12 +80,20 @@ const Login = () => {
         </div>
 
         <button
-          type="button"
-          className="bg-darkblue text-white flex-1 py-3 mt-10 rounded-lg text-xs hover:bg-pageblue mb-4"
-          onClick={handleLogin}
+          className="bg-darkblue  text-white flex-1 py-3 mt-10 rounded-lg text-xs  hover:bg-pageblue mb-4"
+          onClick={() => signIn()}
         >
           LOGIN
         </button>
+        <div
+          className="flex items-center justify-center mb-4 border-darkblue border rounded-lg py-3 cursor-pointer"
+          onClick={() => signInWithGoogle()}
+        >
+          <img src={google} alt="google icon" className="mr-2 w-4" />
+          <p className="text-xs">
+            Login with <span className="font-bold">Google</span>
+          </p>
+        </div>
         <p className="text-xs text-center">
           Don't have an account?{" "}
           <Link to={"/register"}>
