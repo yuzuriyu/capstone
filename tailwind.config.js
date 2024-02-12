@@ -3,6 +3,9 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      animation: {
+        "spin-slow": "spin 4s linear infinite", // Adjust the duration (4s) as needed
+      },
       fontFamily: {
         poppins: [
           "Poppins",
