@@ -3,7 +3,7 @@ const app = express();
 const cors = require("cors");
 const mongoose = require("mongoose");
 const InquiriesModel = require("./models/Inquiries");
-const UsersInfo = require("./models/UsersInfo");
+const UsersInfoModel = require("./models/UsersInfo");
 
 require("dotenv").config();
 
@@ -17,21 +17,6 @@ app.use(cors());
 app.get("/voltage", (req, res) => {
   const voltage = generateVoltage();
   res.json({ voltage });
-});
-
-app.put("/updateUser/:uid", async (req, res) => {
-  const { uid } = req.params;
-  const info = req.body;
-  try {
-    // Assuming UsersInfo is a Mongoose model
-    const user = await UsersInfoModel.findOneAndUpdate({ uid: uid }, info, {
-      new: true,
-    });
-    res.json(user); // Send updated user info as response
-  } catch (err) {
-    console.error("Error updating user:", err);
-    res.status(500).json({ error: "Failed to update user" });
-  }
 });
 
 app.get("/inquiries", async (req, res) => {

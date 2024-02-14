@@ -2,7 +2,7 @@ import lock from "../assets/lock.png";
 import user from "../assets/user.png";
 import google from "../assets/google.png";
 import logo from "../assets/react.svg";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { auth, googleProvider } from "../config/firebase";
 import { signInWithPopup, signInWithEmailAndPassword } from "firebase/auth";
@@ -19,7 +19,10 @@ const Login = () => {
   const signIn = async () => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      navigate("/");
+      if (!userInfo) {
+      } else {
+        navigate("/");
+      }
     } catch (err) {
       console.log(err);
       setError("Invalid email or password");

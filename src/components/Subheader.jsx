@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import search from "../assets/search--dark.png";
+import React, { useContext, useState } from "react";
 import bell from "../assets/bell--dark.png";
 import DropDown from "./DropDown";
 import { auth } from "../config/firebase";
@@ -14,14 +13,6 @@ const Subheader = () => {
   return (
     <div className="relative">
       <div className="w-11/12 m-auto flex justify-end items-center my-4 md:w-10/12">
-        {/* <div className="flex items-center border rounded-lg px-4 py-2 w-[240px] overflow-hidden">
-          <img src={search} alt="" className="w-4" />
-          <input
-            type="text"
-            className="px-4 focus:outline-none flex-1"
-            placeholder="Search"
-          />
-        </div> */}
         <div className="flex items-center">
           <img src={bell} alt="" className="mr-4" />
           <div className="flex items-center" onClick={handleDropDown}>

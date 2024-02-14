@@ -13,8 +13,6 @@ import Register from "./components/Register";
 
 import { auth } from "./config/firebase";
 
-import ProfilePage from "./pages/ProfilePage";
-
 const App = () => {
   const [user, setUser] = useState(auth.currentUser);
 
@@ -54,10 +52,7 @@ const App = () => {
               path="/gallery"
               element={renderProtectedRoute(<Gallery />)}
             />
-            <Route
-              path="/profile"
-              element={renderProtectedRoute(<ProfilePage />)}
-            />
+
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
           </Routes>
