@@ -30,7 +30,7 @@ const VoltageContextProvider = ({ children }) => {
     const fetchVoltageData = async () => {
       try {
         const res = await fetch(
-          "https://capstone-server-alpha.vercel.app/api/hello"
+          "https://important-jersey-hen.cyclic.app/voltage"
         );
         const data = await res.json();
 
