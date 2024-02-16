@@ -49,46 +49,6 @@ const Login = () => {
       </div>
       <div className="flex flex-col">
         <div
-          className={`flex items-center mb-4 border-b py-2 ${
-            error ? "border-red-400" : ""
-          }`}
-        >
-          <img src={user} alt="user icon" className="mx-2 w-5" />
-          <input
-            type="text"
-            placeholder="Email"
-            className="text-xs flex-1 focus:outline-none"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </div>
-        <div
-          className={`flex items-center mb-4 border-b py-2 relative ${
-            error ? "border-red-400" : ""
-          }`}
-        >
-          <img src={lock} alt="password icon" className="mx-2 w-5" />
-          <input
-            type="password"
-            placeholder="Password"
-            className="text-xs flex-1 focus:outline-none"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          {error && (
-            <p className="text-red-400 text-xs text-right mb-4 absolute top-12 right-0">
-              {error}
-            </p>
-          )}
-        </div>
-
-        <button
-          className="bg-darkblue  text-white flex-1 py-3 mt-10 rounded-lg text-xs  hover:bg-pageblue mb-4"
-          onClick={() => signIn()}
-        >
-          LOGIN
-        </button>
-        <div
           className="flex items-center justify-center mb-4 border-darkblue border rounded-lg py-3 cursor-pointer"
           onClick={() => signInWithGoogle()}
         >
@@ -97,12 +57,7 @@ const Login = () => {
             Login with <span className="font-bold">Google</span>
           </p>
         </div>
-        <p className="text-xs text-center">
-          Don't have an account?{" "}
-          <Link to={"/register"}>
-            <span className="text-blue-400">Sign up</span>
-          </Link>
-        </p>
+        <p className="text-xs text-center">We are glad to see you back!</p>
       </div>
     </div>
   );

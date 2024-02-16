@@ -12,7 +12,7 @@ import {
 import { VoltageContext } from "../context/VoltageContext";
 
 const HeroChart = () => {
-  const { voltageData, totalVoltages, totalAccumulation } =
+  const { voltageData, totalVoltages, totalAccumulation, todayAccumalation } =
     useContext(VoltageContext);
   const [yesterdayAccumulation, setYesterdayAccumulation] = useState(0);
 
@@ -28,27 +28,12 @@ const HeroChart = () => {
   if (!voltageData) {
     return <div>Loading...</div>;
   }
-
+  console.log(todayAccumalation);
   return (
     <div className="w-11/12 m-auto py-10 md:w-10/12">
       <div className="border-b border-darkblue mb-4">
         <h1 className="">Total Energy Accumulated</h1>
         <p className="my-2 text-xl">{totalAccumulation} V</p>
-        <p className="text-sm mb-4">
-          Yesterday
-          <span
-            className={`${
-              yesterdayAccumulation >= 1000 ? "text-green-400" : "text-red-400"
-            }
-                font-bold
-              `}
-          >
-            <span className="text-lg">
-              {yesterdayAccumulation >= 1000 ? " " : " -"}
-            </span>
-            {yesterdayAccumulation}%
-          </span>
-        </p>
       </div>
       <ResponsiveContainer width="100%" height={400}>
         <LineChart

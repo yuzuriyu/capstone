@@ -14,7 +14,7 @@ const Subheader = () => {
     <div className="relative">
       <div className="w-11/12 m-auto flex justify-end items-center my-4 md:w-10/12">
         <div className="flex items-center">
-          <img src={bell} alt="" className="mr-4" />
+          {/* <img src={bell} alt="" className="mr-4" /> */}
           <div className="flex items-center" onClick={handleDropDown}>
             <img
               src={auth.currentUser.photoURL}

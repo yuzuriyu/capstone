@@ -9,7 +9,6 @@ import DetailsPage from "./pages/DetailsPage";
 import HowPage from "./pages/HowPage";
 import Gallery from "./pages/Gallery";
 import Login from "./components/Login";
-import Register from "./components/Register";
 
 import { auth } from "./config/firebase";
 
@@ -54,7 +53,6 @@ const App = () => {
             />
 
             <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
           </Routes>
         </div>
       </VoltageContextProvider>

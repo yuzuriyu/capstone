@@ -1,81 +1,103 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function About() {
   return (
     <>
-      <div className="relative h-[316px] w-full">
-        <img
-          src="https://coolwallpapers.me/picsup/5043436-building-city-japan-light-night-time-lapse-tokyo.jpg"
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 flex flex-col justify-center items-center">
-          <h1 className="text-5xl font-playfair text-white">About</h1>
-        </div>
+      <div className="w-11/12 m-auto lg:w-2/3 text-center">
+        <h1 className="text-2xl text-center mb-4">About Us</h1>
+        <p className=" text-sm mb-10">
+          We are the team behind the project—a group of BSIT students committed
+          to developing a Footstep Power Generator using Arduino technology for
+          our capstone endeavor.
+        </p>
       </div>
-      <div className="w-11/12 m-auto py-20 md:w-10/12">
-        <div className="grid grid-cols-1 gap-20 md:grid-cols-2 lg:grid-cols-3">
-          <div>
-            <h1 className="text-xl font-bold mb-4  border-b">
-              Project Overview
-            </h1>
-            <p className="">
-              This is a capstone project about Footstep Power Generator with
-              Arduino which captures energy from footfalls to generate
-              electricity. Using sensors and an Arduino microcontroller, it
-              converts mechanical energy into electrical energy efficiently. The
-              project showcases the feasibility of harvesting renewable energy
-              from human movement, promoting sustainability and energy
-              efficiency.
-            </p>
-          </div>
-          <div>
-            <h1 className="text-xl border-b font-bold mb-4 ">Team Members</h1>
-            <ul>
-              <li>Jhun Tibayan</li>
-              <li>Carey Cole S. Garcia</li>
-              <li>Cedrick Abitria Guiriba</li>
-              <li>Erika Mae Petero</li>
-            </ul>
-          </div>
-          <div>
-            <h1 className="text-xl font-bold mb-4 border-b ">
-              Technology and Innovation
-            </h1>
-            <p className="">
-              Technology and innovation drive progress across industries,
-              reshaping the way we live and work. From renewable energy
-              solutions to cutting-edge advancements, they redefine efficiency
-              and sustainability. Through ingenuity, we unlock new opportunities
-              and address complex challenges, shaping a brighter future.
-            </p>
-          </div>
-          <div>
-            <h1 className="text-xl font-bold mb-4 border-b ">Future Plans</h1>
-            <p className="">
-              In the future, our team intends to further develop our skills in
-              project management, problem-solving, and collaboration as we
-              progress throughout our career. We aim to enhance our
-              understanding of sustainable energy solutions and Arduino
-              technology through practical implementation and experimentation.
-            </p>
-          </div>
-          <div>
-            <h1 className="text-xl font-bold mb-4 border-b ">
-              Impact and Benefits
-            </h1>
-            <p className="">
-              Our project offers sustainable energy solutions by harnessing
-              human kinetic energy. It promotes environmental conservation,
-              reduces reliance on traditional power sources, and demonstrates
-              the potential of renewable energy integration in high-traffic
-              areas.
-            </p>
-          </div>
-          <p className="">
-            All rights reserved © 2024. Unauthorized use or reproduction of
-            content is prohibited without prior consent.
-          </p>
+      <div className="w-11/12 md:w-9/12 m-auto grid grid-cols-2 gap-4 h-[550px] my-10">
+        <div className="grid grid-cols-2 gap-4">
+          <Link
+            to={"/about"}
+            className="rounded-lg overflow-hidden relative group cursor-pointer col-span-2"
+          >
+            <img
+              src="https://i.pinimg.com/564x/53/ee/f5/53eef591108919afa8880e91c9eda0cc.jpg"
+              alt=""
+              className="h-full w-full object-cover absolute group-hover:scale-110 transition-transform duration-300 ease-in-out"
+            />
+          </Link>
+          <Link
+            to={"/about"}
+            className="rounded-lg overflow-hidden relative group cursor-pointer col-span-2 "
+          >
+            <img
+              src="https://i.pinimg.com/564x/20/96/3f/20963f4566e7e7915002e4a7804831a0.jpg"
+              alt=""
+              className="h-full w-full object-cover absolute group-hover:scale-110 transition-transform duration-300 ease-in-out"
+            />
+          </Link>
         </div>
+        <Link
+          to={"/contact"}
+          className="rounded-lg overflow-hidden relative group cursor-pointer"
+        >
+          <img
+            src="https://i.pinimg.com/564x/ff/24/0c/ff240c08a12b973257d9bd57ed91db5b.jpg"
+            alt=""
+            className="h-full w-full object-cover absolute group-hover:scale-110 transition-transform duration-300 ease-in-out"
+          />
+        </Link>
+        <div className="grid grid-cols-3 gap-4">
+          <Link
+            to={"/blog"}
+            className="rounded-lg overflow-hidden relative group cursor-pointer"
+          >
+            <img
+              src="https://i.pinimg.com/564x/a8/50/9e/a8509e24cb8f38fc5a2f9f9b7c06c11f.jpg"
+              alt=""
+              className="h-full w-full object-cover absolute group-hover:scale-125 transition-transform duration-300 ease-in-out"
+            />
+          </Link>
+          <Link
+            to={"/blog"}
+            className="rounded-lg overflow-hidden relative group cursor-pointer"
+          >
+            <img
+              src="https://i.pinimg.com/564x/21/0a/8a/210a8ad1ba131cc1540978cb00073da6.jpg"
+              alt=""
+              className="h-full w-full object-cover absolute group-hover:scale-125 transition-transform duration-300 ease-in-out"
+            />
+          </Link>
+          <Link
+            to={"/blog"}
+            className="rounded-lg overflow-hidden relative group cursor-pointer"
+          >
+            <img
+              src="https://i.pinimg.com/564x/0c/0e/33/0c0e331cbf8bba314af2da0a807c7e9c.jpg"
+              alt=""
+              className="h-full w-full object-cover absolute group-hover:scale-125 transition-transform duration-300 ease-in-out"
+            />
+          </Link>
+          <Link
+            to={"/blog"}
+            className="rounded-lg overflow-hidden relative group cursor-pointer row-start-2 col-start-1 col-end-4"
+          >
+            <img
+              src="https://i.pinimg.com/564x/8d/20/d5/8d20d5d0985ffd15f674078e0f7d0bb7.jpg"
+              alt=""
+              className="h-full w-full object-cover absolute group-hover:scale-125 transition-transform duration-300 ease-in-out"
+            />
+          </Link>
+        </div>
+
+        <Link
+          to={"/blog"}
+          className="rounded-lg overflow-hidden relative group cursor-pointer"
+        >
+          <img
+            src="https://i.pinimg.com/564x/08/f6/c9/08f6c9711b8de932eaad90cf57fb03ab.jpg"
+            alt=""
+            className="h-full w-full object-cover absolute group-hover:scale-125 transition-transform duration-300 ease-in-out"
+          />
+        </Link>
       </div>
     </>
   );

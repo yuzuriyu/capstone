@@ -26,9 +26,6 @@ const Header = () => {
       <div className="flex justify-between w-11/12 m-auto md:w-10/12">
         <img src={logo} alt="" />
         <img src={menu} alt="" className="w-6" onClick={handleToggleMenu} />
-        <button className="text-white" onClick={signOutUser}>
-          logout
-        </button>
       </div>
       {isToggleMenuOpen && <ToggleMenu />}
     </div>

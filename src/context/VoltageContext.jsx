@@ -4,15 +4,17 @@ const VoltageContext = createContext();
 
 const VoltageContextProvider = ({ children }) => {
   const [latestRecord, setLatestRecord] = useState(0);
-  const [voltageData, setVoltageData] = useState([
-    { day: "Mon", voltages: [12] },
-    { day: "Tue", voltages: [45] },
-    { day: "Wed", voltages: [22] },
-    { day: "Thu", voltages: [39] },
-    { day: "Fri", voltages: [55] },
-    { day: "Sat", voltages: [16] },
-    { day: "Sun", voltages: [18] },
-  ]);
+  const [voltageData, setVoltageData] = useState(
+    JSON.parse(localStorage.getItem("voltageData")) || [
+      { day: "Mon", voltages: [12] },
+      { day: "Tue", voltages: [45] },
+      { day: "Wed", voltages: [22] },
+      { day: "Thu", voltages: [39] },
+      { day: "Fri", voltages: [55] },
+      { day: "Sat", voltages: [16] },
+      { day: "Sun", voltages: [18] },
+    ]
+  );
 
   const [totalVoltages, setTotalVoltages] = useState({
     Monday: 0,
@@ -76,6 +78,20 @@ const VoltageContextProvider = ({ children }) => {
     (acc, voltage) => acc + voltage,
     0
   );
+
+  // Calculate today's accumulation
+  const currentDate = new Date();
+  const currentDayIndex = currentDate.getDay();
+  const todayAccumulation =
+    totalVoltages[Object.keys(totalVoltages)[currentDayIndex]];
+
+  useEffect(() => {
+    // Save voltage data to Local Storage whenever it changes
+    localStorage.setItem("voltageData", JSON.stringify(voltageData));
+    // Update total voltages...
+  }, [voltageData]);
+
+  console.log(todayAccumulation);
   return (
     <VoltageContext.Provider
       value={{
@@ -83,6 +99,7 @@ const VoltageContextProvider = ({ children }) => {
         totalVoltages,
         latestRecord,
         totalAccumulation,
+        todayAccumulation,
       }}
     >
       {children}
