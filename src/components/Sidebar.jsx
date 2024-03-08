@@ -53,7 +53,7 @@ const Sidebar = () => {
           <p className="text-white">Contact</p>
         </Link>
         <Link
-          to={"/project-details"}
+          to={"/details"}
           className={`flex items-center py-4 rounded-lg px-4 ${
             activePage === "Details"
               ? "bg-pageblue border-borderblue border"
