@@ -43,7 +43,7 @@ const HeroChart = () => {
           <Line
             type="monotone"
             dataKey="voltage"
-            stroke="#FFA500" // Orange color
+            stroke="#17a5ce"
             strokeWidth={2}
           />
         </LineChart>
