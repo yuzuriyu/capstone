@@ -9,6 +9,32 @@ const VoltageContextProvider = ({ children }) => {
   const [voltageData, setVoltageData] = useState([]);
   const [totalAccumulatedVoltage, setTotalAccumulatedVoltage] = useState(0);
 
+  const submitVoltage = async (day, voltages) => {
+    try {
+      const response = await fetch(
+        `http://localhost:4000/submit-voltage/${day}`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ voltages }),
+        }
+      );
+
+      if (response.ok) {
+        const responseData = await response.json();
+        console.log(responseData);
+        // Handle success response
+      } else {
+        // Handle error response
+        console.error("Failed to submit voltage:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Error submitting voltage:", error);
+    }
+  };
+
   useEffect(() => {
     const fetchVoltageData = async () => {
       try {
@@ -58,6 +84,7 @@ const VoltageContextProvider = ({ children }) => {
         voltageData,
         latestRecord,
         totalAccumulatedVoltage,
+        submitVoltage,
       }}
     >
       {children}
