@@ -12,7 +12,7 @@ const VoltageContextProvider = ({ children }) => {
   const submitVoltage = async (day, voltages) => {
     try {
       const response = await fetch(
-        `http://localhost:4000/submit-voltage/${day}`,
+        `https://ill-cyan-ostrich-kit.cyclic.app/submit-voltage/${day}`,
         {
           method: "PATCH",
           headers: {
