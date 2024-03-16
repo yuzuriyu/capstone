@@ -14,7 +14,7 @@ const Contact = () => {
 
   const submitForm = async () => {
     try {
-      await fetch("https://important-jersey-hen.cyclic.app/submit-inquiry", {
+      await fetch("https://ill-cyan-ostrich-kit.cyclic.app/submit-inquiry", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
