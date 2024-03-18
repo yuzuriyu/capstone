@@ -18,10 +18,16 @@ const HeroChart = () => {
     return <div>Loading...</div>;
   }
 
-  const transformedData = voltageData.map((item) => ({
-    day: item.day,
-    voltage: item.voltages[0], // Assuming there's only one voltage reading per day
-  }));
+  // Aggregate voltage data for each day
+  const aggregatedData = voltageData.reduce((acc, item) => {
+    const day = item.day;
+    const totalVoltage = item.voltages.reduce(
+      (sum, voltage) => sum + voltage,
+      0
+    );
+    acc.push({ day, totalVoltage });
+    return acc;
+  }, []);
 
   return (
     <div className="w-11/12 m-auto py-10 md:w-10/12">
@@ -31,18 +37,17 @@ const HeroChart = () => {
       </div>
       <ResponsiveContainer width="100%" height={400}>
         <LineChart
-          data={transformedData}
+          data={aggregatedData}
           margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
         >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="day" fontSize={12} /> {/* Adjust font size here */}
-          <YAxis fontSize={12} /> {/* Adjust font size here */}
-          {/* <Tooltip fontSize={12} /> Adjust font size here */}
-          <Legend fontSize={12} /> {/* Adjust font size here */}
+          <XAxis dataKey="day" fontSize={12} />
+          <YAxis fontSize={12} />
           <Tooltip />
+          <Legend fontSize={12} />
           <Line
             type="monotone"
-            dataKey="voltage"
+            dataKey="totalVoltage" // Use the aggregated totalVoltage
             stroke="#17a5ce"
             strokeWidth={2}
           />
