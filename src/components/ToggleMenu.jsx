@@ -13,7 +13,7 @@ const ToggleMenu = () => {
   const { handleActivePage, activePage } = useContext(PageContext);
 
   return (
-    <div className="bg-darkblue h-full w-2/3 absolute top-0 z-50">
+    <div className="bg-matteblack h-full w-2/3 absolute top-0 z-50">
       <div className="w-10/12 m-auto py-4">
         <div className="flex items-center mb-4">
           <img src={logo} alt="" className="mr-4" />
@@ -21,11 +21,7 @@ const ToggleMenu = () => {
         </div>
         <Link
           to={"/"}
-          className={`flex items-center py-4 rounded-lg px-4 mb-2   ${
-            activePage === "Overview"
-              ? "bg-pageblue border-borderblue border"
-              : ""
-          }`}
+          className={`flex items-center py-4 rounded-lg px-4 mb-2  `}
           onClick={() => handleActivePage("Overview")}
         >
           <img src={overviewLight} alt="" className="mr-4 w-7" />
@@ -33,9 +29,7 @@ const ToggleMenu = () => {
         </Link>
         <Link
           to={"/about"}
-          className={`flex items-center py-4 rounded-lg px-4 ${
-            activePage === "About" ? "bg-pageblue border-borderblue border" : ""
-          }`}
+          className={`flex items-center py-4 rounded-lg px-4 `}
           onClick={() => handleActivePage("About")}
         >
           <img src={aboutLight} alt="" className="mr-4 w-7" />
@@ -43,11 +37,7 @@ const ToggleMenu = () => {
         </Link>
         <Link
           to={"/contact"}
-          className={`flex items-center py-4 rounded-lg px-4 ${
-            activePage === "Contact"
-              ? "bg-pageblue border-borderblue border"
-              : ""
-          }`}
+          className={`flex items-center py-4 rounded-lg px-4 `}
           onClick={() => handleActivePage("Contact")}
         >
           <img src={contactLight} alt="" className="mr-4 w-7" />
@@ -55,11 +45,7 @@ const ToggleMenu = () => {
         </Link>
         <Link
           to={"/project-details"}
-          className={`flex items-center py-4 rounded-lg px-4 ${
-            activePage === "Details"
-              ? "bg-pageblue border-borderblue border"
-              : ""
-          }`}
+          className={`flex items-center py-4 rounded-lg px-4 `}
           onClick={() => handleActivePage("Details")}
         >
           <img src={detailsLight} alt="" className="mr-4 w-7" />
@@ -68,11 +54,7 @@ const ToggleMenu = () => {
 
         <Link
           to={"/how-it-works"}
-          className={`flex items-center py-4 rounded-lg px-4 ${
-            activePage === "How it Works"
-              ? "bg-pageblue border-borderblue border"
-              : ""
-          }`}
+          className={`flex items-center py-4 rounded-lg px-4 `}
           onClick={() => handleActivePage("How it Works")}
         >
           <img src={howLight} alt="" className="mr-4 w-7" />
@@ -80,11 +62,7 @@ const ToggleMenu = () => {
         </Link>
         <Link
           to={"/gallery"}
-          className={`flex items-center py-4 rounded-lg px-4 ${
-            activePage === "Gallery"
-              ? "bg-pageblue border-borderblue border"
-              : ""
-          }`}
+          className={`flex items-center py-4 rounded-lg px-4 `}
           onClick={() => handleActivePage("Gallery")}
         >
           <img src={galleryLight} alt="" className="mr-4 w-7" />

@@ -1,8 +1,8 @@
 import HeroChart from "../components/HeroChart";
 import Subheader from "../components/Subheader";
-import Devices from "../components/Devices";
 import Sidebar from "../components/Sidebar";
 import Header from "../components/Header";
+import VoltageCard from "../components/VoltageCard";
 
 const HomePage = () => {
   return (
@@ -13,10 +13,9 @@ const HomePage = () => {
       <div className="flex-1">
         <Header />
         <Subheader />
+        <VoltageCard />
         <HeroChart />
-        <div className="flex w-11/12 m-auto flex-col md:flex-row md:w-10/12">
-          <Devices />
-        </div>
+        <div className="flex w-11/12 m-auto flex-col md:flex-row md:w-10/12"></div>
       </div>
     </div>
   );
