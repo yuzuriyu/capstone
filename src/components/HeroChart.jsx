@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import {
   LineChart,
   Line,
@@ -10,9 +10,15 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { VoltageContext } from "../context/VoltageContext";
+import ChartInfo from "./ChartInfo";
 
 const HeroChart = () => {
   const { voltageData, totalAccumulatedVoltage } = useContext(VoltageContext);
+  const [isChartInfoOpen, setIsChartInfoOpen] = useState(false);
+
+  const handleChartInfo = () => {
+    setIsChartInfoOpen((prevStatus) => !prevStatus);
+  };
 
   if (!voltageData) {
     return <div>Loading...</div>;
@@ -53,6 +59,13 @@ const HeroChart = () => {
           />
         </LineChart>
       </ResponsiveContainer>
+      <p
+        className="text-blue-400 text-xs cursor-pointer hover:underline"
+        onClick={() => handleChartInfo()}
+      >
+        {isChartInfoOpen ? "See less" : "Learn More"}
+      </p>
+      {isChartInfoOpen && <ChartInfo />}
     </div>
   );
 };
