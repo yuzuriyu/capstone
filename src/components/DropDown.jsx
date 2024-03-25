@@ -1,28 +1,19 @@
-import { useNavigate, Link } from "react-router-dom";
-import logoutDark from "../assets/logout--dark.png";
-import { auth } from "../config/firebase";
-import { signOut } from "firebase/auth";
+import React from "react";
 
-const DropDown = () => {
-  const navigate = useNavigate();
-
-  const signOutUser = async () => {
-    try {
-      await signOut(auth);
-      navigate("/login");
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
+const Dropdown = () => {
   return (
-    <div className="shadow-lg rounded-lg py-4 px-4 absolute top-12 right-4 w-56 z-50 bg-white">
-      <div className="flex items-center border-t pt-2" onClick={signOutUser}>
-        <img src={logoutDark} alt="" className="mr-4 w-5 cursor-pointer" />
-        <p className="text-sm cursor-pointer">Logout</p>
-      </div>
+    <div className="shadow-lg rounded-lg px-4 py-4 absolute z-50 right-0">
+      <ul>
+        <li>Monday</li>
+        <li>Tuesday</li>
+        <li>Wednesday</li>
+        <li>Thursday</li>
+        <li>Friday</li>
+        <li>Saturday</li>
+        <li>Sunday</li>
+      </ul>
     </div>
   );
 };
 
-export default DropDown;
+export default Dropdown;

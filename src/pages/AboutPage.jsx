@@ -1,7 +1,6 @@
 import React from "react";
 import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
-import Subheader from "../components/Subheader";
 import About from "../components/About";
 
 const AboutPage = () => {
@@ -12,7 +11,6 @@ const AboutPage = () => {
       </div>
       <div className="flex-1">
         <Header />
-        <Subheader />
         <About />
       </div>
     </div>

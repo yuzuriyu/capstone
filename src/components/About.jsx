@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export default function About() {
   return (
-    <>
+    <div className="py-16">
       <div className="w-11/12 m-auto lg:w-2/3 text-center">
         <h1 className="text-2xl text-center mb-4">About Us</h1>
         <p className=" text-sm mb-10">
@@ -75,6 +75,6 @@ export default function About() {
           />
         </div>
       </div>
-    </>
+    </div>
   );
 }

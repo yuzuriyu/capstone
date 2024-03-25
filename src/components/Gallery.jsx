@@ -2,7 +2,7 @@ import React from "react";
 
 const Gallery = () => {
   return (
-    <>
+    <div className="py-16">
       <div className="relative h-[316px] w-full">
         <img
           src="https://wallpapercave.com/wp/wp10497197.jpg"
@@ -14,7 +14,7 @@ const Gallery = () => {
         </div>
       </div>
       <div className="w-11/12 m-auto py-20 md:w-10/12 h-[450px]"></div>
-    </>
+    </div>
   );
 };
 

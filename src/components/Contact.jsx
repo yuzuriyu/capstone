@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import locationDark from "../assets/location--dark.png";
-
 import phoneDark from "../assets/phone--dark.png";
 import timeDark from "../assets/time--dark.png";
 
@@ -33,7 +32,7 @@ const Contact = () => {
     }
   };
   return (
-    <>
+    <div className="py-16">
       <div className="relative h-[316px]">
         <img
           src={"https://wallpaperset.com/w/full/c/0/7/278220.jpg"}
@@ -135,7 +134,7 @@ const Contact = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

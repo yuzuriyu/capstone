@@ -3,50 +3,16 @@ import React, { useEffect, useState, createContext } from "react";
 const VoltageContext = createContext();
 
 const VoltageContextProvider = ({ children }) => {
-  const [latestRecord, setLatestRecord] = useState(0);
   const [voltageData, setVoltageData] = useState([]);
-  const [totalAccumulatedVoltage, setTotalAccumulatedVoltage] = useState(0);
-
-  const submitVoltage = async (day, voltages) => {
-    try {
-      const response = await fetch(
-        `https://ill-cyan-ostrich-kit.cyclic.app/submit-voltage/${day}`,
-        {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ voltages }),
-        }
-      );
-
-      if (response.ok) {
-        const responseData = await response.json();
-        console.log(responseData);
-        // Handle success response
-      } else {
-        // Handle error response
-        console.error("Failed to submit voltage:", response.statusText);
-      }
-    } catch (error) {
-      console.error("Error submitting voltage:", error);
-    }
-  };
+  const [totalCombinedVoltage, setTotalCombinedVoltage] = useState(0);
+  const [totalLength, setTotalLength] = useState(0);
 
   useEffect(() => {
     const fetchVoltageData = async () => {
       try {
-        const res = await fetch(
-          "https://ill-cyan-ostrich-kit.cyclic.app/voltages"
-        );
+        const res = await fetch("http://localhost:4000/voltages");
         const data = await res.json();
-
-        // Check if data.voltage is an array before setting voltageData
-        if (Array.isArray(data.voltage)) {
-          setVoltageData(data.voltage);
-        } else {
-          console.error("Voltage data is not an array:", data.voltage);
-        }
+        setVoltageData(data.voltage);
       } catch (error) {
         console.error("Error fetching voltage data:", error);
       }
@@ -56,33 +22,29 @@ const VoltageContextProvider = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    // Calculate total accumulated voltage
+    // Calculate total combined voltage
     let totalVoltage = 0;
-    // Check if voltageData is an array before iterating
-    if (Array.isArray(voltageData)) {
-      voltageData.forEach((item) => {
-        // Check if item.voltages is an array before iterating
-        if (Array.isArray(item.voltages)) {
-          item.voltages.forEach((voltage) => {
-            totalVoltage += voltage;
-          });
-        } else {
-          console.error("Item voltages is not an array:", item.voltages);
-        }
+    voltageData.forEach((dayData) => {
+      dayData.voltages.forEach((voltageObj) => {
+        totalVoltage += voltageObj.voltage;
       });
-    } else {
-      console.error("Voltage data is not an array:", voltageData);
-    }
-    setTotalAccumulatedVoltage(totalVoltage);
+    });
+    setTotalCombinedVoltage(totalVoltage);
+
+    // Calculate total length of all voltages combined
+    let totalLength = 0;
+    voltageData.forEach((dayData) => {
+      totalLength += dayData.voltages.length;
+    });
+    setTotalLength(totalLength);
   }, [voltageData]);
-  console.log(totalAccumulatedVoltage);
+
   return (
     <VoltageContext.Provider
       value={{
         voltageData,
-        latestRecord,
-        totalAccumulatedVoltage,
-        submitVoltage,
+        totalCombinedVoltage,
+        totalLength,
       }}
     >
       {children}

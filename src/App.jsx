@@ -1,4 +1,3 @@
-import React, { useContext, useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import VoltageContextProvider from "./context/VoltageContext";
@@ -8,51 +7,20 @@ import ContactPage from "./pages/ContactPage";
 import DetailsPage from "./pages/DetailsPage";
 import HowPage from "./pages/HowPage";
 import Gallery from "./pages/Gallery";
-import Login from "./components/Login";
 
-import { auth } from "./config/firebase";
 
 const App = () => {
-  const [user, setUser] = useState(auth.currentUser);
-
-  useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((authUser) => {
-      setUser(authUser);
-    });
-
-    return () => unsubscribe();
-  }, []);
-
-  const renderProtectedRoute = (element) => (user ? element : <Login />);
-
   return (
     <PageContextProvider>
       <VoltageContextProvider>
         <div className="font-poppins text-darkblue">
           <Routes>
-            <Route path="/" element={renderProtectedRoute(<HomePage />)} />
-            <Route
-              path="/about"
-              element={renderProtectedRoute(<AboutPage />)}
-            />
-            <Route
-              path="/contact"
-              element={renderProtectedRoute(<ContactPage />)}
-            />
-            <Route
-              path="/project-details"
-              element={renderProtectedRoute(<DetailsPage />)}
-            />
-            <Route
-              path="/how-it-works"
-              element={renderProtectedRoute(<HowPage />)}
-            />
-            <Route
-              path="/gallery"
-              element={renderProtectedRoute(<Gallery />)}
-            />
-
-            <Route path="/login" element={<Login />} />
+            <Route path="/" element={<HomePage />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/contact" element={<ContactPage />} />
+            <Route path="/project-details" element={<DetailsPage />} />
+            <Route path="/how-it-works" element={<HowPage />} />
+            <Route path="/gallery" element={<Gallery />} />
           </Routes>
         </div>
       </VoltageContextProvider>

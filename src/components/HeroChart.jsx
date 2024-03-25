@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import {
   LineChart,
   Line,
@@ -11,57 +11,67 @@ import {
 } from "recharts";
 import { VoltageContext } from "../context/VoltageContext";
 import ChartInfo from "./ChartInfo";
+import Voltlist from "./Voltlist";
 
 const HeroChart = () => {
-  const { voltageData, totalAccumulatedVoltage } = useContext(VoltageContext);
+  const { voltageData } = useContext(VoltageContext);
   const [isChartInfoOpen, setIsChartInfoOpen] = useState(false);
+  const [aggregatedData, setAggregatedData] = useState([]);
+
+  useEffect(() => {
+    if (voltageData && voltageData.length > 0) {
+      const data = voltageData.map((dayData) => {
+        const totalVoltage = dayData.voltages.reduce(
+          (acc, curr) => acc + curr.voltage,
+          0
+        );
+        return { day: dayData.day, totalVoltage };
+      });
+      setAggregatedData(data);
+    }
+  }, [voltageData]);
 
   const handleChartInfo = () => {
     setIsChartInfoOpen((prevStatus) => !prevStatus);
   };
 
-  if (!voltageData) {
+  if (!aggregatedData || aggregatedData.length === 0) {
     return <div>Loading...</div>;
   }
 
-  // Aggregate voltage data for each day
-  const aggregatedData = voltageData.reduce((acc, item) => {
-    const day = item.day;
-    const totalVoltage = item.voltages.reduce(
-      (sum, voltage) => sum + voltage,
-      0
-    );
-    acc.push({ day, totalVoltage });
-    return acc;
-  }, []);
-
   return (
-    <div className="w-11/12 m-auto py-10 md:w-10/12">
-      <ResponsiveContainer width="100%" height={400}>
-        <LineChart
-          data={aggregatedData}
-          margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+    <div className="w-11/12 m-auto pt-4 pb-10 flex gap-10 flex-col lg:flex-row">
+      <div className="lg:w-8/12">
+        <div className="py-4">
+          <p className="text-2xl">Weekly Data</p>
+        </div>
+        <ResponsiveContainer width="100%" height={400}>
+          <LineChart
+            data={aggregatedData}
+            margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+          >
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="day" fontSize={12} />
+            <YAxis fontSize={12} />
+            <Tooltip />
+            <Legend fontSize={12} />
+            <Line
+              type="monotone"
+              dataKey="totalVoltage"
+              stroke="#17a5ce"
+              strokeWidth={2}
+            />
+          </LineChart>
+        </ResponsiveContainer>
+        <p
+          className="text-blue-400 text-xs cursor-pointer hover:underline"
+          onClick={() => handleChartInfo()}
         >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="day" fontSize={12} />
-          <YAxis fontSize={12} />
-          <Tooltip />
-          <Legend fontSize={12} />
-          <Line
-            type="monotone"
-            dataKey="totalVoltage" // Use the aggregated totalVoltage
-            stroke="#17a5ce"
-            strokeWidth={2}
-          />
-        </LineChart>
-      </ResponsiveContainer>
-      <p
-        className="text-blue-400 text-xs cursor-pointer hover:underline"
-        onClick={() => handleChartInfo()}
-      >
-        {isChartInfoOpen ? "See less" : "Learn More"}
-      </p>
-      {isChartInfoOpen && <ChartInfo />}
+          {isChartInfoOpen ? "See less" : "Learn More"}
+        </p>
+        {isChartInfoOpen && <ChartInfo />}
+      </div>
+      <Voltlist />
     </div>
   );
 };

@@ -3,7 +3,7 @@ import React, { useState } from "react";
 const ProjectDetails = () => {
   const [showAll, setShowAll] = useState(false);
   return (
-    <>
+    <div className="py-16">
       <div className="relative h-[316px] w-full">
         <img
           src="https://images.unsplash.com/photo-1522383225653-ed111181a951?ixlib=rb-4.0.3"
@@ -111,7 +111,7 @@ const ProjectDetails = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

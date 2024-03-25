@@ -2,7 +2,7 @@ import React from "react";
 
 const HowItWorks = () => {
   return (
-    <>
+    <div className="py-16">
       <div className="relative h-[316px] w-full">
         <img
           src="https://images7.alphacoders.com/111/1111209.jpg"
@@ -139,7 +139,7 @@ const HowItWorks = () => {
           </li>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
