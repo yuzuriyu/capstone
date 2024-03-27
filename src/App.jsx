@@ -8,7 +8,6 @@ import DetailsPage from "./pages/DetailsPage";
 import HowPage from "./pages/HowPage";
 import Gallery from "./pages/Gallery";
 
-
 const App = () => {
   return (
     <PageContextProvider>

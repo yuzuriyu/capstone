@@ -8,12 +8,18 @@ import galleryLight from "../assets/gallery--light.png";
 import howLight from "../assets/how--light.png";
 import detailsLight from "../assets/details--light.png";
 import { Link } from "react-router-dom";
+import wallpaper from "../assets/car-2.jpg";
 
 const ToggleMenu = () => {
   const { handleActivePage, activePage } = useContext(PageContext);
 
   return (
     <div className="bg-matteblack h-full w-2/3 absolute top-0 z-50">
+      <img
+        src={wallpaper}
+        alt="wallpaper"
+        className="absolute h-full w-full -z-50 object-cover brightness-50"
+      />
       <div className="w-10/12 m-auto py-4">
         <div className="flex items-center mb-4">
           <img src={logo} alt="" className="mr-4" />

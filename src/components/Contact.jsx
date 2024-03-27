@@ -61,9 +61,7 @@ const Contact = () => {
               </div>
               <div>
                 <p className="font-bold ">Address</p>
-                <p className="text-sm ">
-                  236 5th SE Avenue, New York NY10000, United States
-                </p>
+                <p className="text-sm ">Camiling, Tarlac, Philippines</p>
               </div>
             </div>
             <div className="flex">
@@ -74,16 +72,6 @@ const Contact = () => {
                 <p className="font-bold ">Phone</p>
                 <p className="text-sm ">Mobile: +(84) 546-6789</p>
                 <p className="text-sm ">Hotline: +(84) 456-6789</p>
-              </div>
-            </div>
-            <div className="flex">
-              <div className="mr-4">
-                <img src={timeDark} alt="" className="w-6" />
-              </div>
-              <div>
-                <p className="font-bold dark:text-white">Working Time</p>
-                <p className="text-sm ">Monday-Friday: 9:00 - 22:00</p>
-                <p className="text-sm ">Saturday-Sunday: 9:00 - 21:00</p>
               </div>
             </div>
           </div>

@@ -1,4 +1,4 @@
-import HeroChart from "../components/HeroChart";
+import WeeklyChart from "../components/WeeklyChart";
 import Sidebar from "../components/Sidebar";
 import Header from "../components/Header";
 import VoltageCard from "../components/VoltageCard";
@@ -13,7 +13,7 @@ const HomePage = () => {
         <Header />
         <div className="py-16">
           <VoltageCard />
-          <HeroChart />
+          <WeeklyChart />
         </div>
       </div>
     </div>
